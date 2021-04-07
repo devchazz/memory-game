@@ -1,10 +1,11 @@
 <template>
-  <div class="card" @click="() => {rotate(id)}">
-    <div :id="id" class="card-content">
+  <div class="card">
+    <div :id="id" class="card-content" @click="functionAddName">
       <figure class="card-front">
         <p>Fundo da carta</p>
       </figure>
       <figure class="card-back">
+        <img class="figure-img" :src="image" alt="Figure here">
         <p>{{name}}</p>
       </figure>
     </div>
@@ -13,43 +14,20 @@
 
 <script>
 export default {
-  data(){
-    return{
-      canTurn: true
-    }
-  },
   props:{
     name: String,
-    id: Number
-  },
-  methods:{
-    //Rotate function param from cards:
-    rotate(e){
-      if (this.canTurn){
-        const cardToRotate = document.getElementById(e)
-        cardToRotate.classList.add('rotate180deg')
-        this.check(e)
-      }
-    },
-    check(e){
-      setTimeout(() => {
-        console.log('Ok, turn down')
-        this.rotateBack(e)
-      },1500)
-    },
-    rotateBack(e){
-      const cardToRotate = document.getElementById(e)
-      cardToRotate.classList.remove('rotate180deg')
-    }
+    id: Number,
+    image: String,
+    functionAddName: Function
   }
 }
 </script>
 
 <style scoped>
   .card{
-    width: 120px;
-    height: 120px;
-    margin: 15px;
+    width: 110px;
+    height: 110px;
+    margin: 12px;
     color: black;
   }
   .card-content{
@@ -68,6 +46,18 @@ export default {
     position: absolute;
     backface-visibility: hidden; 
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    user-select: none;
+  }
+  figure p{
+    display: none;
+  }
+  .figure-img{
+    width: 100%;
   }
   .card-front{
     background-color: blueviolet;

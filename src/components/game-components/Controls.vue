@@ -1,7 +1,7 @@
 <template>
   <div id="container-controls">
     <h2>Time: {{time}}</h2>
-    <button id="btn-start" v-if="buttonPlay" @click="functionStart">Play</button>
+    <button id="btn-start" v-if="buttonPlay" @click="startGame">Play</button>
   </div>
 </template>
 
@@ -9,16 +9,20 @@
 export default {
   data(){
     return{
-      time: 30,
+      time: 45,
       buttonPlay: true,
       gameRunning: true
     }
   },
   methods:{
+    startGame(){
+      //start the game
+      this.$emit('runGame')
+      this.functionStart()
+    },
     functionStart(){
       if(this.gameRunning == true){
-        //start the game
-        this.$emit('runGame')
+        
         //Hiding the button:
         if(this.time>0){
           this.buttonPlay = false
@@ -31,8 +35,9 @@ export default {
             return 
           }
           alert('Acabou o tempo')
-          this.time = 30
+          this.time = 45
           this.buttonPlay = true
+          this.$emit('playAgain')
         },1000)
       }
     },
