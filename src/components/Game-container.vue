@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div id="body" class="flex">
     <div id="container-controls">
       <Controls v-if="inGame" ref="controlsFunctions" @runGame="startTheGame" @playAgain="stopClicksAndGame"/>
       <PlayAgain v-else @reset="resetGame"/>
@@ -37,9 +37,6 @@ export default {
     Controls,
     PlayAgain
   },
-  mounted() {
-      this.resetGame()
-    },
   methods:{
     //Controls:
     canClickNow(){
@@ -126,17 +123,25 @@ export default {
 
     //Play again:
     resetGame(){
+      location.reload()
+      /* 
+      //Work in progress:
       console.log('Reset')
       this.inGame = true
       this.rotateAllBack()
       this.cannotClickNow()
+      */
     },
+
     rotateAllBack(){
+      /*
+      //Work in progress
       for(let i=0;i<this.cards.length;i++){
         document.getElementById(i).classList.remove('rotate180deg')
         this.points = 0
         this.shuffleArray(this.cards)
       }
+      */
     },
 
     //Shuffle:
@@ -164,5 +169,10 @@ export default {
   flex-wrap: wrap;
   width: 90%;
   margin: auto;
+}
+@media screen and (max-width: 800px){
+  .flex{
+    width: 100%;
+  }
 }
 </style>

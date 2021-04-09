@@ -23,6 +23,7 @@ export default {
     padding: 15px 7%;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px white solid;
   }
   header a{
     color: black;
@@ -30,5 +31,13 @@ export default {
     background-color: #5DCB77;
     padding: 10px 30px;
     border-radius: 20px;
+  }
+  @media screen and (max-width: 800px){
+    header{
+      flex-direction: column;
+    }
+    header h1{
+      padding-bottom: 20px;
+    }
   }
 </style>

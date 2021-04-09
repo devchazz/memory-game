@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <div class="h-100">
-      <Header title="Memory Game"/>
-      <GameContainer/>
+    <div class="h-100 flex-column">
+      <div>
+        <Header title="Memory Game"/>
+        <GameContainer/>
+      </div>
+      <div class="p-20">
+        <Footer/>
+      </div>
     </div>
-    <About/>
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import GameContainer from './components/Game-container'
-import About from './components/About'
+import Footer from './components/Footer'
 
 export default {
   name: 'App',
   components: {
     Header,
     GameContainer,
-    About
+    Footer
   }
 }
 </script>
@@ -39,6 +43,14 @@ export default {
 }
 .h-100{
   min-height: 100vh;
+}
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.p-20{
+  padding: 20px 0;
 }
 
 </style>

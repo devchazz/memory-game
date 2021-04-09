@@ -34,7 +34,7 @@ export default {
             this.functionStart()
             return 
           }
-          alert('Acabou o tempo')
+          alert('Time is over')
           this.time = 45
           this.buttonPlay = true
           this.$emit('playAgain')

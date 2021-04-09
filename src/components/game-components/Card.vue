@@ -2,7 +2,7 @@
   <div class="card">
     <div :id="id" class="card-content" @click="functionAddName">
       <figure class="card-front">
-        <p>Fundo da carta</p>
+        <img class="back-image" src="https://i.pinimg.com/564x/cc/35/49/cc3549a65072fdfd2b5e43e724bada09.jpg">
       </figure>
       <figure class="card-back">
         <img class="figure-img" :src="image" alt="Figure here">
@@ -45,18 +45,19 @@ export default {
     height: 100%;
     position: absolute;
     backface-visibility: hidden; 
-    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     user-select: none;
   }
   figure p{
     display: none;
   }
   .figure-img{
+    width: 100%;
+  }
+  .back-image{
     width: 100%;
   }
   .card-front{
