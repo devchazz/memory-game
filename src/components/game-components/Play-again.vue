@@ -21,7 +21,8 @@ export default {
   }
   #btn-play-again{
     font-size: 1.2em;
-    padding: 5px 15px;
+    margin: 10px 0 0 0;
+    padding: 10px 15px;
     border-radius: 10px;
     background-color: #5DCB77;
     border: none;

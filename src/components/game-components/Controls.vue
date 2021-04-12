@@ -34,10 +34,9 @@ export default {
             this.functionStart()
             return 
           }
-          alert('Time is over')
           this.time = 45
           this.buttonPlay = true
-          this.$emit('playAgain')
+          this.$emit('thePlayerLost')
         },1000)
       }
     },

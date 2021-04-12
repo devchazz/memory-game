@@ -1,7 +1,8 @@
 <template>
   <div id="body" class="flex">
+
     <div id="container-controls">
-      <Controls v-if="inGame" ref="controlsFunctions" @runGame="startTheGame" @playAgain="stopClicksAndGame"/>
+      <Controls v-if="inGame" ref="controlsFunctions" @runGame="canClickNow" @thePlayerLost="stopClicksAndGame"/>
       <PlayAgain v-else @reset="resetGame"/>
     </div>
 
@@ -26,16 +27,17 @@ export default {
   data(){
     return{
       inGame: true, //Controls
-      canClick: false, //Can turn on
-      points: 0, //Won the game (n)
-      checkingNow:[], //Check 2 cards 
-      cards //List of cards -> go to cads.js
+      canClick: false, //Can use the cards
+      points: 0,
+      cardsFound: [],
+      checkingNow:[], //Check turned cards 
+      cards, //List of cards -> go to cads.js
     }
   },
   components:{
     Card,
     Controls,
-    PlayAgain
+    PlayAgain //Appear when the player won or lose, so he can play the game again
   },
   methods:{
     //Controls:
@@ -46,14 +48,9 @@ export default {
       this.canClick = false
     },
 
-    //Start the game:
-    startTheGame(){
-      this.canClickNow()
-    },
-
-    //Check the pair of cards and doing something with that:
+    //When the player clicks in the cards:
     addArrayAndCheck(e){
-      if(this.canClick && this.checkingNow.length<2){
+      if(this.canClick && !this.cardsFound.includes(e.name) && this.checkingNow.length<2){
         if(!this.checkingNow[0]){
           this.rotate(e.id)
           this.checkingNow.push(e)
@@ -70,7 +67,7 @@ export default {
         this.cannotClickNow()
         if(this.checkingNow[0].name == this.checkingNow[1].name){
           this.points ++
-          console.log(this.points)
+          this.cardsFound.push(this.checkingNow[0].name)
           this.checkingNow = []
           setTimeout(() => {
             this.checkWin()
@@ -109,7 +106,7 @@ export default {
       if(this.inGame){
         this.inGame = false
         this.cannotClickNow()
-        alert("You won!!! Thanks for playing")
+        this.$emit('showModalWin')
         this.$refs.controlsFunctions.stopTheGame()
         this.cannotClickNow()
       }
@@ -119,6 +116,7 @@ export default {
     stopClicksAndGame(){
       this.cannotClickNow()
       this.inGame = false
+      this.$emit('showModalLose')
     },
 
     //Play again:

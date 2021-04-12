@@ -1,9 +1,33 @@
 <template>
   <div id="app">
+    <!--Appear when the player won the game:-->
+    <div v-if="modalWinVisibility" class="modal">
+      <div class="modal-content">
+        <p>
+          Congratulations, you won!
+        </p>
+        <button class="modal-btn" @click="hideModals">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!--Appear when the player lose the game:-->
+    <div v-if="modalLoseVisibility" class="modal">
+      <div class="modal-content">
+        <p>
+          Time is over, I'm sorry.
+        </p>
+        <button class="modal-btn" @click="hideModals">
+          Close
+        </button>
+      </div>
+    </div>
+
     <div class="h-100 flex-column">
       <div>
         <Header title="Memory Game"/>
-        <GameContainer/>
+        <GameContainer @showModalWin="showModalWin" @showModalLose="showModalLose"/>
       </div>
       <div class="p-20">
         <Footer/>
@@ -23,7 +47,26 @@ export default {
     Header,
     GameContainer,
     Footer
+  },
+  data(){
+    return{
+      modalWinVisibility: false,
+      modalLoseVisibility: false
+    }
+  },
+  methods:{
+    hideModals(){
+      this.modalWinVisibility = false
+      this.modalLoseVisibility = false
+    },
+    showModalWin(){
+      this.modalWinVisibility = true
+    },
+    showModalLose(){
+      this.modalLoseVisibility = true
+    }
   }
+  
 }
 </script>
 
@@ -51,6 +94,32 @@ export default {
 }
 .p-20{
   padding: 20px 0;
+}
+.modal{
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+.modal-content{
+  font-weight: bold;
+  font-size: 1.5em;
+  min-height: 200px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #111;
+  border: black 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.modal-btn{
+  font-size: 1.1em;
+  border-radius: 10px;
 }
 
 </style>
