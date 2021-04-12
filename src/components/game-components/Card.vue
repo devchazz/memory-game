@@ -60,11 +60,7 @@ export default {
   .back-image{
     width: 100%;
   }
-  .card-front{
-    background-color: blueviolet;
-  }
   .card-back{
-    background-color: #84c77a;
     transform: rotateY(180deg);
   }
 </style>
