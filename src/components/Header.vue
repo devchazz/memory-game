@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <a href="">GitHub</a>
+    <a href="https://github.com/devchazz/memory-game">GitHub</a>
   </header>
 </template>
 
