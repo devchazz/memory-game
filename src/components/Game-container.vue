@@ -123,22 +123,22 @@ export default {
     resetGame(){
       location.reload()
       /* 
-      //Work in progress:
-      console.log('Reset')
-      this.inGame = true
-      this.rotateAllBack()
-      this.cannotClickNow()
+        //Work in progress:
+        console.log('Reset')
+        this.inGame = true
+        this.rotateAllBack()
+        this.cannotClickNow()
       */
     },
 
     rotateAllBack(){
       /*
-      //Work in progress
-      for(let i=0;i<this.cards.length;i++){
-        document.getElementById(i).classList.remove('rotate180deg')
-        this.points = 0
-        this.shuffleArray(this.cards)
-      }
+        //Work in progress
+        for(let i=0;i<this.cards.length;i++){
+          document.getElementById(i).classList.remove('rotate180deg')
+          this.points = 0
+          this.shuffleArray(this.cards)
+        }
       */
     },
 

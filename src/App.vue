@@ -55,6 +55,7 @@ export default {
     }
   },
   methods:{
+    //Messages (win or lose):
     hideModals(){
       this.modalWinVisibility = false
       this.modalLoseVisibility = false
